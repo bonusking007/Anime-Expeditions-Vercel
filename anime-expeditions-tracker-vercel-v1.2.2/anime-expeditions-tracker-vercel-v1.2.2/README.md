@@ -1,4 +1,4 @@
-# SEASHOP Anime Expeditions Tracker
+# SEASHOP Anime Expeditions Tracker #
 
 **Version:** 1.2.2  
 **Updated:** 30 July 2026
