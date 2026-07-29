@@ -1,4 +1,4 @@
-# Anime Expeditions Inventory Tracker
+# Anime Expeditions Inventory Tracker #
 
 **Version:** `1.1.1`  
 **Updated:** `30 July 2026`
