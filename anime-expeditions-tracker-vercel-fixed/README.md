@@ -1,5 +1,14 @@
 # Anime Expeditions Inventory Tracker
 
+Version: 1.0.1  
+Updated: 30 July 2026
+
+## Changelog
+
+- Fixed Vercel Root Directory deployment
+- Added inventory tracking website
+- Added Roblox ItemData API
+
 เว็บ Vercel สำหรับรับข้อมูล `Replica.Data.ItemData` จาก Luau และแสดงจำนวนไอเทมแบบเรียลไทม์
 
 ## ฟีเจอร์
