@@ -1,0 +1,3 @@
+LEAVE ROOT DIRECTORY EMPTY
+LEAVE OUTPUT DIRECTORY EMPTY
+Upload these files directly to the GitHub repository root.
