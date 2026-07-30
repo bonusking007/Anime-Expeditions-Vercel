@@ -1,2 +1,0 @@
-If you upload the outer wrapper folder to GitHub, set your Vercel Root Directory to:
-seashop-trackstats-v1.7.0-folder/seashop-trackstats
