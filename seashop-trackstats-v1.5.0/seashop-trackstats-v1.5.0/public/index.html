@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEASHOP</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="/assets/logo.png" alt="SEASHOP" class="brand-logo" onerror="this.style.display='none'"/>
+        <div>
+          <div class="brand-title">SEASHOP</div>
+          <div class="brand-sub">LIVE INVENTORY SERVICE</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#home">HOME</a>
+        <a href="#dashboard">DASHBOARD</a>
+      </nav>
+      <div class="live-pill">● LIVE SYNC</div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <h1>LET US GRIND.<br><span>YOU JUST PLAY.</span></h1>
+        <p>Track Anime Expeditions inventory in real time with display names, icons and live gem totals.</p>
+        <a class="cta" href="#dashboard">ENTER DASHBOARD</a>
+      </section>
+
+      <section class="dashboard" id="dashboard">
+        <div class="dashboard-head">
+          <div>
+            <div class="eyebrow">PLAYER OPERATIONS</div>
+            <h2>SEASHOP Dashboard</h2>
+            <p>Players appear automatically when the tracker is running.</p>
+          </div>
+          <button id="refreshBtn" class="secondary-btn">Refresh Data</button>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-label">All Accounts</div>
+            <div id="statAccounts" class="summary-value">0</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Online Now</div>
+            <div id="statOnline" class="summary-value">0</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Total Gems</div>
+            <div id="statGems" class="summary-value">0</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">Item Types</div>
+            <div id="statTypes" class="summary-value">0</div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input id="searchInput" type="text" placeholder="Search player, key or item..." />
+          <label class="checkbox-wrap"><input type="checkbox" id="onlineOnly" /> Online only</label>
+        </div>
+
+        <div class="content-grid">
+          <section>
+            <div class="section-title">LIVE PLAYERS</div>
+            <div id="cards" class="cards"></div>
+          </section>
+
+          <aside class="sidepanel">
+            <div class="mini-card">
+              <div class="mini-title">Overview</div>
+              <div id="overviewGems" class="mini-big">0</div>
+              <div class="mini-caption">Total Gems</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Recent Sync</div>
+              <div id="recentSync" class="mini-list">Waiting for player data...</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Tracker System</div>
+              <div class="system-row"><span>API</span><span class="ok">CONNECTED</span></div>
+              <div class="system-row"><span>Refresh Rate</span><span>5 SEC</span></div>
+              <div class="system-row"><span>Web Version</span><span>v1.5.0</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© 2026 SEASHOP | All Systems Operational</div>
+      <div>Not affiliated with Roblox Corporation. All trademarks are property of their respective owners.</div>
+    </footer>
+  </div>
+
+  <dialog id="inventoryModal" class="modal">
+    <div class="modal-head">
+      <div class="profile-wrap">
+        <img id="modalAvatar" class="avatar-large" alt="avatar" />
+        <div>
+          <div class="eyebrow">PLAYER INVENTORY</div>
+          <h3 id="modalName">Player</h3>
+          <div id="modalMeta" class="muted"></div>
+        </div>
+      </div>
+      <button id="closeModal" class="icon-btn">×</button>
+    </div>
+
+    <div class="modal-stats">
+      <div><span>Item Types</span><strong id="modalItemTypes">0</strong></div>
+      <div><span>Total Gems</span><strong id="modalGems">0</strong></div>
+      <div><span>Last Sync</span><strong id="modalLastSync">-</strong></div>
+    </div>
+
+    <div class="toolbar">
+      <input id="inventorySearch" type="text" placeholder="Search item name or key..." />
+      <select id="inventorySort">
+        <option value="amount-desc">Highest amount</option>
+        <option value="amount-asc">Lowest amount</option>
+        <option value="name-asc">Name A-Z</option>
+        <option value="name-desc">Name Z-A</option>
+      </select>
+    </div>
+
+    <div id="inventoryList" class="inventory-list"></div>
+  </dialog>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
