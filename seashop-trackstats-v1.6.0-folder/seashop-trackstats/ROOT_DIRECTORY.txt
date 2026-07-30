@@ -1,0 +1,2 @@
+Upload all extracted files in this project directly to the repository root.
+In Vercel, leave Root Directory empty when these files are at repo root.
