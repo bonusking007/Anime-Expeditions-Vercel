@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SeaShop live Anime Expeditions inventory dashboard">
+  <meta name="theme-color" content="#07111b">
+  <title>SEASHOP Dashboard</title>
+  <link rel="icon" href="/assets/sea-shop-logo.png" type="image/png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="background-glow glow-one" aria-hidden="true"></div>
+  <div class="background-glow glow-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" aria-label="SEASHOP home">
+        <img class="brand-logo" src="/assets/sea-shop-logo.png" alt="SEASHOP logo">
+        <span class="brand-copy">
+          <strong>SEASHOP</strong>
+          <small>LIVE INVENTORY SERVICE</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home" class="nav-link active" data-nav="home">Home</a>
+        <a href="#dashboard" class="nav-link" data-nav="dashboard">Dashboard</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <span class="sync-pill"><i></i> LIVE SYNC</span>
+        <a class="discord-button" href="https://discord.gg/PU9j3KtVuX" target="_blank" rel="noreferrer">Discord</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero-view">
+      <div class="hero-inner">
+        <div class="hero-brand">
+          <img src="/assets/sea-shop-logo.png" alt="SEASHOP logo">
+        </div>
+        <p class="hero-kicker">>> ROBLOX FARMING — AS A SERVICE <<</p>
+        <h1 class="hero-title">LET US GRIND.<br><span>YOU JUST PLAY.</span></h1>
+        <p class="hero-description">Track Anime Expeditions inventory in real time with a clean blue cyber dashboard built for SEASHOP.</p>
+        <button id="start-dashboard" class="hero-button" type="button">Enter Dashboard</button>
+      </div>
+
+      <div class="hero-features">
+        <article>
+          <strong>100% SECURE</strong>
+          <span>Protected request flow and API key validation</span>
+        </article>
+        <article>
+          <strong>FAST</strong>
+          <span>Real-time refresh for active player sessions</span>
+        </article>
+        <article>
+          <strong>24/7</strong>
+          <span>Always online infrastructure on Vercel + Redis</span>
+        </article>
+        <article>
+          <strong>LIVE</strong>
+          <span>Open player inventory from the dashboard instantly</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard-view" hidden>
+      <div class="page">
+        <section class="intro">
+          <div>
+            <span class="kicker">SEASHOP TRACKING PANEL</span>
+            <h1>SEASHOP Dashboard</h1>
+            <p>Players appear automatically when the tracker is running. Select a profile card to open the full in-game inventory.</p>
+          </div>
+          <div class="intro-status">
+            <span>SERVER STATUS</span>
+            <strong><i></i> OPERATIONAL</strong>
+          </div>
+        </section>
+
+        <section class="toolbar" aria-label="Player filters">
+          <label class="search-control">
+            <span>⌕</span>
+            <input id="main-search" type="search" placeholder="Search player, User ID or item..." autocomplete="off">
+          </label>
+          <label class="toggle-control">
+            <input id="online-only" type="checkbox">
+            <span>Online only</span>
+          </label>
+          <button id="refresh-button" class="refresh-button" type="button">Refresh Data</button>
+        </section>
+
+        <div id="error-banner" class="error-banner" hidden></div>
+
+        <section class="dashboard-layout">
+          <div class="players-panel">
+            <header class="section-header">
+              <div>
+                <span>LIVE PLAYERS</span>
+                <h2 id="account-count">0 accounts</h2>
+              </div>
+              <p id="last-refresh">Waiting for update</p>
+            </header>
+
+            <div id="player-grid" class="player-grid"></div>
+
+            <div id="empty-page" class="empty-page" hidden>
+              <div class="empty-symbol">◇</div>
+              <h3>No player data yet</h3>
+              <p>Run the Luau tracker after setting your Vercel URL and API key.</p>
+            </div>
+
+            <div id="loading" class="loading">Loading player data...</div>
+          </div>
+
+          <aside class="sidebar">
+            <section class="side-card overview-card">
+              <header><span>▥</span><strong>Overview</strong><i></i></header>
+              <div class="overview-total simple">
+                <img class="overview-gem-icon" data-static-asset-id="127345120309392" alt="Gem" hidden>
+                <span>Total Gems</span>
+                <strong id="overview-total">0</strong>
+              </div>
+              <div class="overview-grid bigger">
+                <div><span>Players</span><strong id="overview-players">0</strong></div>
+                <div><span>Online</span><strong id="overview-online">0</strong></div>
+                <div><span>Item Types</span><strong id="overview-items">0</strong></div>
+              </div>
+            </section>
+
+            <section class="side-card recent-card">
+              <header><span>◉</span><strong>Recent Sync</strong><i></i></header>
+              <div id="recent-list" class="recent-list">
+                <p class="side-empty">Waiting for player data...</p>
+              </div>
+            </section>
+
+            <section class="side-card system-card">
+              <header><span>⌁</span><strong>Tracker System</strong><i></i></header>
+              <div class="system-row"><span>API</span><strong class="good">CONNECTED</strong></div>
+              <div class="system-row"><span>Refresh Rate</span><strong>5 SEC</strong></div>
+              <div class="system-row"><span>Online Window</span><strong>45 SEC</strong></div>
+              <div class="version-row"><span>WEB VERSION</span><strong>v1.4.0</strong></div>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <span>© 2026 SEASHOP</span>
+      <span>|</span>
+      <span>All Systems Operational</span>
+    </div>
+    <p>Not affiliated with Roblox Corporation. All trademarks are property of their respective owners.</p>
+  </footer>
+
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <header class="modal-header">
+        <div class="modal-profile">
+          <div id="modal-avatar" class="modal-avatar"><span>SS</span></div>
+          <div>
+            <span class="modal-kicker">PLAYER INVENTORY</span>
+            <h2 id="modal-name"></h2>
+            <p id="modal-subtitle"></p>
+          </div>
+        </div>
+        <button id="modal-close" class="icon-button" type="button" aria-label="Close inventory">×</button>
+      </header>
+
+      <div class="modal-summary">
+        <div><span>Item Types</span><strong id="modal-item-types">0</strong></div>
+        <div><span>Total Gems</span><strong id="modal-total-gems">0</strong></div>
+        <div><span>Last Sync</span><strong id="modal-last-sync">-</strong></div>
+      </div>
+
+      <div class="modal-toolbar">
+        <label class="search-control compact">
+          <span>⌕</span>
+          <input id="modal-search" type="search" placeholder="Search item name..." autocomplete="off">
+        </label>
+        <select id="modal-sort" aria-label="Sort inventory">
+          <option value="amount">Highest amount</option>
+          <option value="name">Item name</option>
+        </select>
+      </div>
+
+      <div class="inventory-table-wrap">
+        <table class="inventory-table">
+          <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+          <tbody id="item-table-body"></tbody>
+        </table>
+        <div id="inventory-empty" class="inventory-empty" hidden>No matching items.</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
