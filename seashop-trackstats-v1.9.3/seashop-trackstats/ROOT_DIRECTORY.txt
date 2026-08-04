@@ -1,0 +1,5 @@
+Vercel Root Directory ตามวิธีอัปโหลดเดิมของโปรเจกต์นี้:
+
+seashop-trackstats-v1.9.3/seashop-trackstats-v1.9.3/seashop-trackstats
+
+ตรวจ Breadcrumb บน GitHub ก่อน Save และใส่ชื่อโฟลเดอร์ทุกชั้นตามที่เห็นจริง
