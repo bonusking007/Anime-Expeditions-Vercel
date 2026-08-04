@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SeaShop live Anime Expeditions inventory dashboard">
+  <meta name="theme-color" content="#07111b">
+  <title>SEASHOP Dashboard</title>
+  <link rel="icon" href="/assets/sea-shop-logo.png" type="image/png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="background-glow glow-one" aria-hidden="true"></div>
+  <div class="background-glow glow-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" aria-label="SEASHOP home">
+        <img class="brand-logo" src="/assets/sea-shop-logo.png" alt="SEASHOP logo">
+        <span class="brand-copy">
+          <strong>SEASHOP</strong>
+          <small>LIVE INVENTORY SERVICE</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home" class="nav-link active" data-nav="home">Home</a>
+        <a href="#dashboard" class="nav-link" data-nav="dashboard">Dashboard</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <span class="sync-pill"><i></i> LIVE SYNC</span>
+        <a class="discord-button" href="https://discord.gg/PU9j3KtVuX" target="_blank" rel="noreferrer">Discord</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero-view">
+      <div class="hero-inner">
+        <div class="hero-brand">
+          <img src="/assets/sea-shop-logo.png" alt="SEASHOP logo">
+        </div>
+        <p class="hero-kicker">SEA SHOP</p>
+        <h1 class="hero-title">GRINDING DASHBOARD</h1>
+        <p class="hero-description">Track Roblox stats in real time with SEASHOP.</p>
+        <button id="start-dashboard" class="hero-button" type="button">Enter Dashboard</button>
+      </div>
+
+      <div class="hero-features">
+        <article>
+          <strong>REALTIME</strong>
+          <span>Fresh player data is pushed directly from Roblox into your live web dashboard.</span>
+        </article>
+        <article>
+          <strong>CUSTOM</strong>
+          <span>Show custom descriptions, item icons, place names and farming status on every card.</span>
+        </article>
+        <article>
+          <strong>DETAILS</strong>
+          <span>Open inventory and reward history from each account card with one click.</span>
+        </article>
+        <article>
+          <strong>SYNCED</strong>
+          <span>Designed for Vercel + Upstash so multiple accounts stay tracked in one panel.</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard-view" hidden>
+      <div class="page">
+        <section class="intro intro-compact">
+          <div class="intro-status">
+            <span>SERVER STATUS</span>
+            <strong><i></i> OPERATIONAL</strong>
+          </div>
+        </section>
+
+        <section class="toolbar" aria-label="Player filters">
+          <label class="search-control">
+            <span>⌕</span>
+            <input id="main-search" type="search" placeholder="Search player, User ID or item..." autocomplete="off">
+          </label>
+          <label class="toggle-control">
+            <input id="online-only" type="checkbox">
+            <span>Online only</span>
+          </label>
+          <button id="refresh-button" class="refresh-button" type="button">Refresh Data</button>
+        </section>
+
+        <div id="error-banner" class="error-banner" hidden></div>
+
+        <section class="dashboard-layout">
+          <div class="players-panel">
+            <header class="section-header">
+              <div>
+                <span>LIVE PLAYERS</span>
+                <h2 id="account-count">0 accounts</h2>
+              </div>
+              <p id="last-refresh">Waiting for update</p>
+            </header>
+
+            <div id="player-grid" class="player-grid"></div>
+
+            <div id="empty-page" class="empty-page" hidden>
+              <div class="empty-symbol">◇</div>
+              <h3>No player data yet</h3>
+              <p>Run the Luau tracker after setting your Vercel URL and API key.</p>
+            </div>
+
+            <div id="loading" class="loading">Loading player data...</div>
+          </div>
+
+          <aside class="sidebar">
+            <section class="side-card overview-card">
+              <header><span>▥</span><strong>Overview</strong><i></i></header>
+              <div class="overview-total online-total">
+                <span class="overview-online-icon" aria-hidden="true">♙</span>
+                <span>Total Online</span>
+                <strong id="overview-total">0</strong>
+              </div>
+              <div class="overview-grid bigger status-overview-grid">
+                <div><span>Players</span><strong id="overview-players">0</strong></div>
+                <div><span>Online</span><strong id="overview-online" class="online-number">0</strong></div>
+                <div><span>Offline</span><strong id="overview-offline" class="offline-number">0</strong></div>
+              </div>
+            </section>
+
+            <section class="side-card recent-card">
+              <header><span>◉</span><strong>Recent Sync</strong><i></i></header>
+              <div id="recent-list" class="recent-list">
+                <p class="side-empty">Waiting for player data...</p>
+              </div>
+            </section>
+
+            <section class="side-card system-card">
+              <header><span>⌁</span><strong>Tracker System</strong><i></i></header>
+              <div class="system-row"><span>API</span><strong class="good">CONNECTED</strong></div>
+              <div class="system-row"><span>Refresh Rate</span><strong>5 SEC</strong></div>
+              <div class="system-row"><span>Online Window</span><strong>45 SEC</strong></div>
+              <div class="version-row"><span>WEB VERSION</span><strong>v1.9.0</strong></div>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <span>© 2026 SEASHOP</span>
+      <span>|</span>
+      <span>All Systems Operational</span>
+    </div>
+    <p>Not affiliated with Roblox Corporation. All trademarks are property of their respective owners.</p>
+  </footer>
+
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+      <header class="modal-header">
+        <div class="modal-profile">
+          <div id="modal-avatar" class="modal-avatar"><span>SS</span></div>
+          <div>
+            <span class="modal-kicker">PLAYER INVENTORY</span>
+            <h2 id="modal-name"></h2>
+            <p id="modal-subtitle"></p>
+          </div>
+        </div>
+        <button id="modal-close" class="icon-button" type="button" aria-label="Close inventory">×</button>
+      </header>
+
+      <div class="modal-summary">
+        <div><span>Item Types</span><strong id="modal-item-types">0</strong></div>
+        <div><span>Total Gems</span><strong id="modal-total-gems">0</strong></div>
+        <div><span>Last Sync</span><strong id="modal-last-sync">-</strong></div>
+      </div>
+
+      <div class="modal-toolbar">
+        <label class="search-control compact">
+          <span>⌕</span>
+          <input id="modal-search" type="search" placeholder="Search item name..." autocomplete="off">
+        </label>
+        <select id="modal-sort" aria-label="Sort inventory">
+          <option value="amount">Highest amount</option>
+          <option value="name">Item name</option>
+        </select>
+      </div>
+
+      <div class="inventory-grid-wrap">
+        <div id="item-grid" class="inventory-grid"></div>
+        <div id="inventory-empty" class="inventory-empty" hidden>No matching items.</div>
+      </div>
+    </section>
+  </div>
+
+
+  <div id="unit-backdrop" class="modal-backdrop unit-backdrop" hidden>
+    <section class="modal unit-modal" role="dialog" aria-modal="true" aria-labelledby="unit-name">
+      <header class="modal-header">
+        <div class="modal-profile">
+          <div id="unit-avatar" class="modal-avatar"><span>SS</span></div>
+          <div>
+            <span class="modal-kicker">PLAYER UNIT VAULT</span>
+            <h2 id="unit-name"></h2>
+            <p id="unit-subtitle"></p>
+          </div>
+        </div>
+        <button id="unit-close" class="icon-button" type="button" aria-label="Close units">×</button>
+      </header>
+
+      <div class="unit-summary-grid">
+        <div><span>Total Units</span><strong id="unit-count">0</strong></div>
+        <div><span>Secret</span><strong id="unit-secret-count">0</strong></div>
+        <div><span>Mythic</span><strong id="unit-mythic-count">0</strong></div>
+        <div><span>Shiny</span><strong id="unit-shiny-count">0</strong></div>
+      </div>
+
+      <div class="modal-toolbar unit-toolbar">
+        <label class="search-control compact">
+          <span>⌕</span>
+          <input id="unit-search" type="search" placeholder="Search unit, trait or rarity..." autocomplete="off">
+        </label>
+        <select id="unit-rarity" aria-label="Filter rarity"><option value="all">All rarities</option></select>
+        <select id="unit-trait" aria-label="Filter trait"><option value="all">All traits</option></select>
+      </div>
+
+      <div class="unit-grid-wrap">
+        <div id="unit-grid" class="unit-grid"></div>
+        <div id="unit-empty" class="inventory-empty" hidden>No matching units.</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="details-backdrop" class="details-backdrop" hidden>
+    <section class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-name">
+      <header class="details-header">
+        <button id="details-close" class="details-back-button" type="button">← Back to Dashboard</button>
+      </header>
+
+      <div class="details-layout">
+        <aside class="details-profile-card card-corners">
+          <div class="details-status-row">
+            <div id="details-status" class="player-status"><i></i>TRACKING</div>
+          </div>
+          <div class="details-avatar-stage">
+            <div id="details-avatar" class="details-avatar"></div>
+          </div>
+          <div class="details-profile-body">
+            <h2 id="details-name"></h2>
+            <div class="details-server-line" id="details-server-line"></div>
+            <div class="details-detail-description" id="details-description"></div>
+            <div class="details-main-stats">
+              <div class="detail-main-stat level-stat">
+                <span>Level</span><strong id="details-level">0</strong><small id="details-level-xp">-- XP</small>
+              </div>
+              <div class="detail-main-stat"><span>Gems</span><strong id="details-total-gems">0</strong></div>
+              <div class="detail-main-stat"><span>Trait Rerolls</span><strong id="details-trait-rerolls">0</strong></div>
+              <div class="detail-main-stat"><span>Gold</span><strong id="details-gold">0</strong></div>
+            </div>
+            <div class="details-stat-mini-grid compact-detail-grid">
+              <div><span>Last Sync</span><strong id="details-last-sync">-</strong></div>
+              <div><span>Runs Saved</span><strong id="details-runs-count">0</strong></div>
+            </div>
+            <div class="details-info-table">
+              <div><span>Game</span><strong id="details-game">Anime Expeditions</strong></div>
+              <div><span>Service</span><strong id="details-service">Live inventory tracking</strong></div>
+              <div><span>Mode</span><strong id="details-mode">Farm</strong></div>
+              <div><span>Tracker</span><strong id="details-tracker-status">Sending</strong></div>
+              <div><span>Interval</span><strong id="details-send-interval">15 SEC</strong></div>
+              <div><span>Result Logs</span><strong id="details-max-result-logs">20</strong></div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="details-log-card side-card">
+          <header class="details-log-header">
+            <div class="details-log-title"><span>◎</span><strong>Run Details</strong><small id="details-log-summary" class="details-log-summary">Latest 0 runs</small></div>
+            <div class="run-overview-metrics">
+              <div><img data-static-asset-id="117858142594774" alt="Wave" hidden><span>Wave</span><strong id="details-current-wave">0</strong></div>
+              <div><span class="wins-icon">✓</span><span>Total Wins</span><strong id="details-total-wins">0</strong></div>
+            </div>
+          </header>
+          <div id="details-log-list" class="details-log-list">
+            <div class="details-empty">No run logs yet. Finish a game and let the tracker sync again.</div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
