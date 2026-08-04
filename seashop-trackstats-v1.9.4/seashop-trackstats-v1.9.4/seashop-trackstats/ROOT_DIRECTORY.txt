@@ -1,0 +1,3 @@
+Vercel Root Directory:
+
+seashop-trackstats-v1.9.4/seashop-trackstats
