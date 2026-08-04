@@ -1,5 +1,0 @@
-Vercel Root Directory (ตามวิธีแตก ZIP และอัปโหลด GitHub แบบเดิมของโปรเจกต์นี้):
-
-seashop-trackstats-v1.9.2/seashop-trackstats-v1.9.2/seashop-trackstats
-
-ให้ตรวจ breadcrumb บน GitHub อีกครั้งก่อน Save หากเห็นชื่อโฟลเดอร์เวอร์ชันซ้ำ ให้ใส่ทุกชั้นตามที่เห็นจริง
